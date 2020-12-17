@@ -1,0 +1,262 @@
+:root{
+  --open: 'Open Sans', sans-serif;
+  --oswal: 'Oswald', sans-serif;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: var(--open);
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.contenedor{
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(90px, 90px) auto;
+  grid-template-rows: 60px auto;
+  grid-template-areas: "header header"
+                        "menu contenido";
+  transition: all 1s ease;
+}
+
+.contenedor.active{
+  grid-template-columns: minmax(300px, 18%) auto;
+}
+
+/* header */
+.header{
+  grid-area: header;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  justify-content: space-between;
+  grid-gap: 20px;
+  grid-template-areas: "logo busqueda iconos";
+}
+
+.header .contenedor-logo{
+  grid-area: logo;
+  display: flex;
+  align-items: center;
+}
+
+.header .contenedor-logo .boton-menu{
+  border: none;
+  padding: 10px;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 100px;
+  width: 50px;
+  height: 50px;
+  margin-right: 30px;
+  outline: none;
+}
+
+.header .contenedor-logo .boton-menu:hover{
+  background: #f2f2f2;
+}
+
+.logo .fas{
+  background: #ff0000;
+  color: white;
+  padding: 7px 12px;
+  border-radius: 5px;
+  font-size: 10px;
+  position: relative;
+  top: -7px;
+  margin-right: 5px;
+}
+
+.header .logo{
+  font-family: var(--oswal);
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  top: 1px;
+}
+
+.header .barra-busqueda{
+  grid-area: busqueda;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header .barra-busqueda input{
+  min-width: 60%;
+  padding: 0 15px;
+  height: 35px;
+  line-height: 35px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  font-family: var(--open);
+  outline: none;
+}
+
+.header .barra-busqueda button{
+  height: 35px;
+  border: 1px solid #ccc;
+  border-left: none;
+  color: #545454;
+  background: #f8f8f8;
+  padding: 0 20px;
+  cursor: pointer;
+}
+.header .barra-busqueda button:hover{
+  background: #f5f5f5;
+}
+
+.header .botones-header{
+  grid-area: iconos;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header .botones-header button{
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  padding: 7px 12px;
+  border-radius: 100px;
+  color: #828282;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.header .botones-header .avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* menu lateral */
+.menu-lateral{
+  grid-area: menu;
+  overflow: hidden;
+}
+
+.menu-lateral a{
+  display: block;
+  padding: 15px 40px;
+  color: #606060;
+  min-width: 800px;
+}
+
+.menu-lateral a:hover{
+  background: #e5e5e5;
+}
+
+.menu-lateral a.active{
+  background: #e5e5e5;
+  font-weight: bold;
+}
+
+.menu-lateral .fas,
+.menu-lateral .fab{
+  color: #606060;
+  margin-right: 32px;
+  width: 20px;
+  text-align: center;
+}
+
+.menu-lateral a.active .fas{
+  color: #ff0000;
+}
+
+.menu-lateral hr{
+  margin: 15px 0;
+  border: 1px solid #dfdfdf;
+}
+
+/* Contenido Principal */
+.main{
+  grid-area: contenido;
+  background: #f9f9f9;
+  padding: 40px;
+}
+
+.main .titulo{
+  margin-bottom: 20px;
+}
+
+.main .grid-videos{
+  display: grid;
+  grid-gap: 30px 10px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.main .grid-videos .videos{
+  width: 100%;
+}
+
+.main .grid-videos .videos img{
+  width: 100%;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1200px){
+  .main .grid-videos{
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .header .contenedor-logo .logo span{
+    display: none;
+  }
+
+  .header .barra-busqueda input{
+    min-width: 70%;
+  }
+}
+
+@media screen and (max-width: 992px){
+  .main .grid-videos{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px){
+  .contenedor{
+    grid-template-rows: auto;
+  }
+
+  .header{
+    padding: 20px;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    grid-template-areas: "logo iconos"
+                          "busqueda busqueda";
+  }
+
+  .header .contenedor-logo .logo span{
+    display: inline;
+  }
+
+  .header .barra-busqueda input{
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px){
+  .main .grid-videos{
+    grid-template-columns: 1fr;
+  }
+}
